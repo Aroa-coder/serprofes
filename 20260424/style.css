@@ -1,31 +1,33 @@
 /* Agregando estilos a las tarjetas */
 /* 1.RESETEO BÁSICO */
 *{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+margin: 10;
+padding: 20;
+box-sizing: content-box;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin-bottom:calc( 0, 0, 0, 0.5);
 }
 
 body{
     background-color: #f0f2f5;
-    padding: 50px;
+    padding: 30px;
 }
 
 /* 2.REPASO FLEXBOX */
 .contenedor-tarjetas{
+    width: 100%;
 display: flex;
-justify-self: center; /* Tarjetas centren en la pantalla*/
+justify-content: center; /* Tarjetas centren en la pantalla*/
 gap: 40px; /*Separación perfecta entre tarjeta y tarjeta*/
-margin-top: 40px;
+margin-top: 150px;
 }
 
-/*DISEÑO BASE DE A TARJETA*/
+/*DISEÑO BASE DE lA TARJETA*/
 .Tarjetas{
-background-color: white;
+background-color: rgb(169, 183, 177);
 width: 320px;
 padding: 40px 30px;
-border-radius: 15px;
+border-radius: 5px;
 text-align: center;
 /* Magia 1 : Sombra estatica suave  */
 box-shadow: 0 4px 10px rgb(0, 0, 0.05);
@@ -45,47 +47,70 @@ box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 
 .Tarjetas h3{
     color:#333;
-    font-size: 24px;
-   margin-bottom: 15px;
+ font-size: 20px;
+   margin-bottom: 5px;
+   stroke-width: 20pxx color #030430;
+   box-sizing: content-box;
 }
 
 .precio{
-font-size: 36px;
+font-size: 20px;
 font-weight: bold;
 color:#2c3e50;
-margin-bottom: 20px
+margin-bottom: 40px
 
 }
 
 .Tarjetas p {
 color: #666;
-margin-bottom: 30px;
-line-height: 1.6; /* Interlineado 1.6 veces el tamaño de la letra*/
+margin-bottom: 5px;
+line-height: 1.9; /* Interlineado 1.6 veces el tamaño de la letra*/
 
 }
 
 .Tarjetas button{
-padding: 12px 30px;
+padding: 45px 50px;
 border: none;
-border-radius: 30px;
-background-color: #ecf0f1;
-color: #333;
+border-radius: 50px;
+background-color: #56857473;
+color: #e9e4e4;
 font-weight: bold;
-font-size:16px ;
+font-size:16px 
 cursor: pointer;
+margin-bottom: 25px;
 transition: background-color 0.3s ease; /*Transición suave de color*/
 }
 
 .Tarjetas .btn-destacado{
-background-color: #3498db;
+background-color: #56857473;
 color: white;
 
 }
 
 .Tarjetas button:hover{
-background-color: #bdc3c7;
+background-color: #8f9aa0;
 
 }
 .Tarjetas .btn-destacado:hover{
-background-color: #2980b9;
+background-color: #8f9aa0;
+}
+
+.titulo-planes {
+    font-size: 64px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 70px;
+    letter-spacing: -1px; /* Más compacto y moderno */
+    color: #2a3d1a;
+}
+
+.destacado- .Tarjetas {
+    border: 2px solid #8e44ad;
+    box-shadow: 0 0 20px rgba(142, 68, 173, 0.4);
+    animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo {
+    from { box-shadow: 0 0 10px rgba(142, 68, 173, 0.3); }
+    to   { box-shadow: 0 0 25px rgba(142, 68, 173, 0.6); }
 }
