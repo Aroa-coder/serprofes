@@ -167,8 +167,8 @@ right: 0;
         font-size: 35px;
 }
 /*Ocultamos el ¨log in¨ para hacer un sitio*/
-nav .login-btn {
-    disoplay: none;
+nav .logn-btn {
+    display: none;
 }
 /*Reducimos el boton de arriba (Downloap App*/
 nav .btn {
