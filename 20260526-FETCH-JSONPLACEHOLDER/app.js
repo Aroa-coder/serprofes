@@ -4,15 +4,15 @@ import { callAPI } from "./api.js";
 const pantalla = document.getElementById('pantallaResultados');
 const btnBuscar = document.getElementById('btnBuscar');
 const input = document.getElementById('inputId');
-const btnError = document.getElementById('btnError');
+const btnError = document.getElementById('bntError');
 const formCrear = document.getElementById('formCrear');
 
 //GET DINÁMICO (Buscar Publicación)
 btnBuscar.addEventListener('click', async ()=>{
-const id = input.value.trim();
+const id = inputId.value.trim();
 //Seguridad: Que no nos envien campos vacíos
 if(id===""){
-    pantalla.textContent.textContent = "⚠️Por favor, escribe un número de ID.";
+    pantalla.textContent = "⚠️Por favor, escribe un número de ID.";
     return;
 }
 pantalla.textContent = "⌛Viajando a internet ...";
@@ -30,6 +30,58 @@ try {
 
 });
 
-btnBorrar.addEventListener('click', async () => {
-    
+//CONTROL DE ACCIDENTES (TRY... CATCH)
+btnError.addEventListener('click', async () =>{
+    pantalla.textContent = "⌛Forzando un accidente...";
+
+    try {
+        //Enviamos al cartero a una ruta que no existe en el servidor
+        const data = await callAPI("/ruta-inventada-que-no-existe");
+        pantalla.textContent =JSON.stringify(data,null,2);
+}catch (error){
+    //como la ruta da error 404, el código salta directamente aquí y no se rompe la web
+    pantalla.textContent = `¡El escudo Try/Catch funcionó\nDetalle:$(error.message)`;
+}
 });
+
+//CREAR DATOS (POST)
+//En las empresas, no solo leemos internet, también mandamos información (Registros, compras...)
+
+formCrear.addEventListener('submit', async(evento) => {
+    //1. Evitamos el parpadeo de la web al enviar formulario
+    evento.preventDefault();
+
+    pantalla.textContent = "⌛ Empaquetando y enviando datos...";
+    //2. Construimos el "paquete" con la información de los inputs
+    const tituloNuevo = document.getElementById('inputTitulo').value;
+    const cuerpoNuevo = document.getElementById('inputCuerpo').value;
+
+    const paqueteDatos = {
+title: tituloNuevo,
+body: cuerpoNuevo,
+userId: 1 // Ponemos un ID de usuario fijo simulando que estamos logueados 
+};
+
+try{
+    //3. Llamamos al cartero, pero esta vez le pasamos "opciones" (Método POST y el body)
+const respuestaServidor = await callAPI("/posts", {
+    method: "POST", // Método para crear 
+    body: JSON.stringify(paqueteDatos) //Convertimos nuestro objeto JS a texto JSON
+});
+//4. El servidor nos responde con el objeto creado (incluyendo su nuevo ID)
+pantalla.textContent = `🆗 ¡Creación existosa en el servidor!\n\n` + JSON.stringify(respuestaServidor,null,2);
+//Limpiamos los inputs
+document.getElementById('ìnputTitulo').value = "";
+document.getElementById('inputCuerpo').value = "";
+
+} catch(error) {
+    pantalla.textContent = `❌ Falló la creación: ${error.message}`;
+
+}
+
+});
+
+
+
+
+

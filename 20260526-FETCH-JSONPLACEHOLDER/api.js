@@ -13,7 +13,7 @@ export async function callAPI(ruta,opciones = {}){
 
     try {
         //3. El 'await' pausa la ejecución hasta que el servidor conteste
-        const respuesta = await fetch(urlCompleta, {
+        const respuesta = await fetch(urlCompleta,{
         headers: {"Content-Type": "application/json"},
         ...opciones //Pegamos cualquier opción extra que nos pasen
         });
@@ -21,15 +21,15 @@ export async function callAPI(ruta,opciones = {}){
 
     //4.Verificamos el estado (El servidor respondió,
     //pero igual dijo "404 No encontrado")
-    if (respuesta.ok) {
-        throw new Error(`Error HTTP: ${respuesta.status} - ${respuesta.statusText}`);
+    if (!respuesta.ok) {
+        throw new error(`Error HTTP: ${respuesta.status} - ${respuesta.statusText}`);
     }
     //5. Traducimos el paquete (JSON) a un objeto de que JavaScript entienda
     const datos = await respuesta.json();
     return datos;
     } catch (error) {
         //6. Si se cae el internet o la URL no existe, lo atrapamos aquí
-        console.error("Fallo crítico en el cartero: ",error)
+        console.error("Fallo crítico en el cartero: ", error);
         throw error; //Lanzamos el error hacia arriba para que la pantalla lo muestre
     }
 
