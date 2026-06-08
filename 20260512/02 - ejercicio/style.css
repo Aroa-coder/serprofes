@@ -58,3 +58,14 @@ button:hover{
     text-align: right;
     margin-top: 20px;
 }
+
+.total .detalle {
+    font-size: 1rem; /* Más pequeño */
+    font-weight: normal;
+    color: #0a0a0a; /* Un color más suave para que no compita con el total */
+}
+
+.total .monto-final {
+    font-size: 1.8rem; /* El total se queda grande */
+    margin-top: 5px; /* Un pequeño respiro extra antes del total si quieres */
+}

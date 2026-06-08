@@ -19,18 +19,22 @@ lista_HTML.innerHTML += `
 `
 
 }
-// LA FUNCIÓN COBRAR
-function cobrar() {}
-//1. Creamos una variable = acumulador 
-let suma_TOTAL = 0; 
-//2. Creamos un bucle for para recorrer el Array
-for (let i = 0; i< carrito.length; i++) {
-    //En cada vuelta le sumamos al "suma_TOTAL" el precio
-    suma_TOTAL = suma_TOTAL + carrito[i].precio;
+function cobrar(){
+    // 1. Calculamos el subtotal
+    let subtotal = 0; // <--- Cambiado de sumaTotal a subtotal
+    for (let i = 0; i < carrito.length; i++){
+        subtotal = subtotal + carrito[i].precio;
+    }
 
-//3. Mostramos el resultado final en HTML
-document.getElementById("resultado-total").textContent =
-"total: " + suma_TOTAL.toFixed(2) + "€";
+    // 2. Calculamos el IVA (21%) y el Total
+    const tasaIVA = 0.21;
+    let totalIVA = subtotal * tasaIVA; // <--- Ahora sí encuentra "subtotal"
+    let totalFinal = subtotal + totalIVA;
 
-
+    // 3. Mostramos los resultados en el HTML
+    document.getElementById('resultado-total').innerHTML = `
+    <span class="detalle">Subtotal: ${subtotal.toFixed(2)} €</span>
+    <span class="detalle">IVA (21%): ${totalIVA.toFixed(2)} €</span>
+    <span class="monto-final">Total: ${totalFinal.toFixed(2)} €</span>
+    `;
 }
