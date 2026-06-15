@@ -1,12 +1,12 @@
 // 1. SELECCIÓN DE ELEMENTOS: Guardamos en variables los elementos del HTML
-const inputEquipo = document.getElementById('nombreEquipo');
-const inputProblema = document.getElementById('problema');
-const btnAbrirTicket = document.getElementById('btnAbrirTicket');
+const inputEquipo = document.getElementById('nombreCompleto');
+const inputProblema = document.getElementById('Profesión');
+const btnAbrirTicket = document.getElementById('btnRegistrarEntrada');
 const listaTickets = document.getElementById('listaTickets');
 const txtContador = document.getElementById('contador');
 
 // Variable para llevar la cuenta de los tickets abiertos
-let totalTickets = 0;
+let totalTickets = 2;
 
 // Escuchamos el evento 'click' en el botón
 btnAbrirTicket.addEventListener('click', () => {
