@@ -72,3 +72,27 @@ button:hover {
     transform: scale(1.03);
     box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
+@media (max-width: 480px){
+
+    body{
+        padding: 15px;
+    }
+
+    .card{
+        width: 95%;
+    }
+
+    .img-box{
+        width: 100%;
+        max-width: 180px;
+    }
+
+    .descripcion{
+        font-size: 18px;
+    }
+
+    .precio{
+        font-size: 20px;
+    }
+
+}

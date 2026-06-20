@@ -260,7 +260,7 @@ background:rgba(255,255,255,.12);
 backdrop-filter:blur(15px);
 
 border-radius:30px;
-
+cd ..
 padding:40px;
 
 box-shadow:

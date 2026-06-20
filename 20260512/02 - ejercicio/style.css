@@ -1,71 +1,251 @@
+
+/* RESET */
 *{
     margin:0;
-    padding: 0;
-    box-sizing: border-box;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 40px;
-    background: #f0f4f8;
-    display: flex;
-    justify-content: center;
+/* FONDO */
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height:100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #312e81,
+            #7c3aed
+        );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
 }
 
-.ticket {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    width: 350px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+/* TARJETA */
+.ticket{
+    width:400px;
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.35),
+        inset 0 1px 1px rgba(255,255,255,.2);
+
+    transition:0.4s ease;
 }
-h2 {
-    text-align: center;
-    color: #333;
-    border-bottom: 2px dashed #ccc;
-    padding-bottom: 10px;
+
+.ticket:hover{
+    transform:
+        translateY(-8px)
+        scale(1.02);
+
+    box-shadow:
+        0 35px 80px rgba(0,0,0,.45);
 }
-ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
+
+/* TITULO */
+h2{
+    text-align:center;
+
+    font-size:2rem;
+
+    background:linear-gradient(
+        90deg,
+        #60a5fa,
+        #8b5cf6,
+        #ec4899
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+        0 6px 25px rgba(255,255,255,.25);
+
+    padding-bottom:18px;
+
+    margin-bottom:25px;
+
+    border-bottom:2px solid rgba(255,255,255,.2);
 }
-li {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 1.1rem;
-    display: flex;
-    justify-content: space-between;
+
+/* LISTA */
+ul{
+    list-style:none;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:14px;
 }
-button {
-    background: #007acc;
-    color: white;
-    padding: 12px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    font-size: 1.1rem;
-    border-radius: 5px;
-    font-weight: bold;
+
+/* ITEMS */
+li{
+    padding:16px 18px;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.18),
+            rgba(255,255,255,.08)
+        );
+
+    color:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:1.1rem;
+
+    transition:.35s;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.15);
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.4);
 }
+
+li:hover{
+    transform:
+        translateX(8px)
+        scale(1.03);
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 15px 35px rgba(124,58,237,.5);
+}
+
+/* BOTON */
+button{
+    margin-top:25px;
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #06b6d4,
+            #3b82f6,
+            #8b5cf6
+        );
+
+    color:white;
+
+    font-size:1.15rem;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    box-shadow:
+        0 12px 30px rgba(59,130,246,.45);
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.4);
+}
+
 button:hover{
-    background: #005fa3;
-}
-.total {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #e74c3c;
-    text-align: right;
-    margin-top: 20px;
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 18px 45px rgba(139,92,246,.7);
+
+    filter:brightness(1.08);
 }
 
-.total .detalle {
-    font-size: 1rem; /* Más pequeño */
-    font-weight: normal;
-    color: #0a0a0a; /* Un color más suave para que no compita con el total */
+button:active{
+    transform:scale(.98);
 }
 
-.total .monto-final {
-    font-size: 1.8rem; /* El total se queda grande */
-    margin-top: 5px; /* Un pequeño respiro extra antes del total si quieres */
+/* TOTAL */
+.total{
+    margin-top:28px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.2),
+            rgba(255,255,255,.08)
+        );
+
+    text-align:right;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.2);
+}
+
+.total .detalle{
+    display:block;
+
+    color:#dbeafe;
+
+    font-size:1rem;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.4);
+}
+
+.total .monto-final{
+    display:block;
+
+    margin-top:8px;
+
+    font-size:2.4rem;
+
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            90deg,
+            #facc15,
+            #f97316
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+        0 8px 30px rgba(255,170,0,.45);
 }

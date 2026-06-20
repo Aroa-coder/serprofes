@@ -1,62 +1,169 @@
 //1. Importamos la herramienta principal (Express)
 const express = require("express");
 
-//2.Creamos nuestra aplicación (nuestro servidor)
+//2. Creamos nuestra aplicación(nuestro servidor)
 const app = express();
 
-//3. MIDDLEWARE (La línea mágica) 
-//Esto es un traductor. Le dice a Node: "Si alguien te envía datos desde fuera,tradúcelos al formato Json para que podamos
-//leerlos". Si falta esto, el POST falla.
+//3. MIDDLEWARE (La línea mágica)
+// Esto es  un traductor. Le dice a Node: "Si alguien
+// te envia datos desde fuera, tradúcelos al formato
+// JSON para que podamos leerlos". Si falta esto
+// , el POST falla."
 app.use(express.json());
 //NUESTRA BASE DE DATOS
-//Guardamos información temporalmente en una lista Array dentro de la memoria del servidor
+// Guardamos información temporalmente en la lista array
+//dentro de la memoria del servidor
 let estudiantes = [
-    {id: 1, nombre:"Aroa", curso: "React"},
-    {id: 2, nombre: "Jose", curso: "Node"}
+    { id: 1, nombre: "Aroa", curso: "React"},
+    { id: 2, nombre: "Jose", curso: "Node"}
 ];
 
+//RETO 1 : BASE DE DATOS PROFESORES
 let profesores = [
-    {id: 1, nombre:"Jorge Oscanoav", asignatura: "Desarrollador web"},
-    {id: 2, nombre:"Julio Iglesias", asignatura: "Frontend"}
+    { id: 1, nombre: "Jorge", curso: "Desarollo Web"},
+    { id: 2, nombre: "Gonzalo", curso: "Machine Learning"}
 ];
 
 //🚩RUTA GET: PARA LEER DATOS
-//Cuándo alguien pregunte por "/api/estudiantes", el servidor muestra la lista
-app.get("/api/estudiantes", (req,res)=>{
+// Cuando alguien pregunte por "/api/estudiantes", el servidor muestra la lista
+app.get("/api/estudiantes", (req, res)=> {
     res.json(estudiantes);
 });
 
-app.get("/api/profesores", (req,res)=>{
+//🚩RUTA POST: PARA GUARDAR DATOS NUEVOS
+//Cuando alguien envíe información a "api/estudiantes", hacemos lo siguiente
+app.post("/api/estudiantes", (req, res) => {
+    //A. Atrapamos los datos que vienen de fuera (viven dentro de req.body)
+    //const nuevoEstudiante = req.body;
+    const {nombre, curso} = req.body;
+
+    //RETO 3 : VALIDACIÓN EL PORTERO
+
+    if (!nombre || !curso || nombre.trim() === "" || curso.trim() === ""){
+        return res.status(400).json({
+            error:"Error: El nombre y el curso son obligatorios."
+        });
+    };
+
+    //RETO NIVEL 2 : ID AUTOMATICO
+    const nuevoEstudiante = {
+        id: estudiantes.length + 1,
+        nombre: nombre,
+        curso: curso
+    };
+    //B. Metemos ese estudiante nuevo en nuestra lista usando .push()
+    estudiantes.push(nuevoEstudiante);
+    //C. Le respondemos al usuario confirmando que todo ha ido bien
+    res.json({
+        mensaje: "¡Estudiante añadido con éxito a la base de datos!",
+        listaActualizada: estudiantes
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// RUTAS DINÁMICAS  (CRUD COMPLETO)
+app.get("/api/estudiantes/:id", (req, res)=> {
+    const idBuscado = parseInt(req.params.id);
+    const estudiante = estudiantes.find(e => e.id === idBuscado);
+    if (estudiante) {
+        res.json(estudiante);
+    } else {
+        res.status(404).json({error : "Estudiante no encontrado"});
+    }
+});
+
+
+// ✏️ ACTUALIZAR ESTUDIANTE
+app.put("/api/estudiantes/:id", (req, res) => {
+    const idActualizar = parseInt(req.params.id);
+    const indice = estudiantes.findIndex(e => e.id === idActualizar);
+
+    if (indice !== -1){
+        // Actualizamos los datos, pero mantenemos el ID original intacto
+        estudiantes[indice] = { id: idActualizar, ...req.body};
+        res.json({
+            mensaje: "¡Estudiante actualizado",
+            estudianteModificado: estudiantes[indice]
+        });
+    } else {
+        res.status(404).json({ error: "Estudiante no encontrado"});
+    }
+});
+
+// 🗑️ ELIMINAR UN ESTUDIANTE
+app.delete("/api/estudiantes/:id", (req, res) => {
+    const idBorrar = parseInt(req.params.id);
+    //Nos quedamos con todos los que no coincidan con el ID
+    estudiantes = estudiantes.filter(e => e.id !== idBorrar);
+    res.json ({
+        mensaje: "Estudiante eliminado",
+        listaActualizada: estudiantes
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//RETO 1 : Profesores
+
+app.get("/api/profesores", (req, res)=> {
     res.json(profesores);
 });
-
-
-//🚩RUTA POST: PARA GUARDAR DATOS NUEVOS 
-//Cuándo alguien envíe información a "api/estudiantes", hacemos los siguiente
-app.post("/api/estudiantes",(req,res) => {
-//A. Atrapamos los datos que vienen de fuera (viven dentro de req.body)
-const nuevoEstudiante = req.body;
-//B. Metemos ese estudiante nuevo en nuestra lista usando .push()
-profesores.push(nuesvoEstudiante);
-//C. Le respondemos al usuario confirmando que todo ha ido bien 
-res.json({
-    mensaje:"¡Estudiante añadido con éxito a la base de datos!",
-    listaActualizada: estudiantes
-});
+app.post("/api/profesores", (req, res) => {
+    //A. Atrapamos los datos que vienen de fuera (viven dentro de req.body)
+    const nuevoProfesor = req.body;
+    //B. Metemos ese estudiante nuevo en nuestra lista usando .push()
+    profesores.push(nuevoProfesor);
+    //C. Le respondemos al usuario confirmando que todo ha ido bien
+    res.json({
+        mensaje: "¡Profesor añadido con éxito a la base de datos!",
+        listaActualizada: profesores
+    });
 });
 
 
-app.post("/api/profesores",(req,res) => {
-const nuevosProfesores = req.body;
-profesores.push(nuevosProfesores);
-res.json({
-    mensaje:"¡Profesor añadido con éxito a la base de datos!",
-    listaActualizada: profesores
-});
-});
 
-//5.ENCENDEMOS EL MOTOR 💨
-//Le decimos al servidor que se quede vigilando el puerto 3000
+
+
+
+
+
+
+//5.ENCENDER EL MOTOR 💨 
+// Le decimos al servidor que quede vigilando el puerto 3000
 app.listen(3000, () =>{
-    console.log("🎊¡Servidor funcioanndo! URL:http//localhost:3000");
-});
+    console.log("🎉¡Servidor funcionando! URL: http://localhost:3000");
+})
