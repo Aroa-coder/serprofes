@@ -376,3 +376,133 @@
   src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+/* Tablets */
+@media (max-width: 768px){
+
+    body{
+        padding:20px;
+        align-items:flex-start;
+    }
+
+    .ticket{
+        width:100%;
+        max-width:550px;
+
+        padding:28px;
+    }
+
+    h2{
+        font-size:1.7rem;
+    }
+
+    li{
+        font-size:1rem;
+
+        padding:14px 16px;
+    }
+
+    button{
+        font-size:1rem;
+
+        padding:15px;
+    }
+
+    .total .monto-final{
+        font-size:2rem;
+    }
+}
+
+
+/* Celulares */
+@media (max-width: 480px){
+
+    body{
+        padding:15px;
+    }
+
+    .ticket{
+        width:100%;
+
+        padding:22px;
+
+        border-radius:20px;
+    }
+
+    h2{
+        font-size:1.5rem;
+
+        margin-bottom:18px;
+
+        padding-bottom:14px;
+    }
+
+    ul{
+        gap:10px;
+    }
+
+    li{
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:8px;
+
+        font-size:.95rem;
+
+        padding:14px;
+    }
+
+    li:hover{
+        transform:none; /* evita movimientos incómodos */
+    }
+
+    button{
+        padding:14px;
+
+        font-size:1rem;
+
+        border-radius:14px;
+    }
+
+    .total{
+        text-align:center;
+
+        padding:16px;
+    }
+
+    .total .detalle{
+        font-size:.95rem;
+    }
+
+    .total .monto-final{
+        font-size:1.8rem;
+    }
+}
+
+
+/* Pantallas muy pequeñas */
+@media (max-width: 320px){
+
+    .ticket{
+        padding:18px;
+    }
+
+    h2{
+        font-size:1.3rem;
+    }
+
+    .total .monto-final{
+        font-size:1.5rem;
+    }
+
+    button{
+        font-size:.95rem;
+    }
+
+}
