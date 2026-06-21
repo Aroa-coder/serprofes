@@ -491,7 +491,7 @@ body{
 }
 
 /* =========================
-   ABOUT IMAGE
+   ABOUT IMAGE 
 ========================= */
 
 .about{
@@ -510,20 +510,51 @@ body{
   flex:1;
   display:flex;
   justify-content:center;
+  align-items:center;
 }
 
 .about-image img{
-  width:320px;
-  height:320px;
-  object-fit:cover;
+
+  width:100%;
+  max-width:420px;
+
+  height:auto;
+
+  object-fit:contain;
+  object-position:center top;
 
   border-radius:30px;
 
-  border:1px solid rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,.1);
 
-  box-shadow:0 0 60px rgba(192,132,252,0.15);
+  box-shadow:0 0 60px rgba(192,132,252,.15);
+
+  display:block;
 }
 
+/* TABLET */
+@media(max-width:768px){
+
+  .about{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .about-image img{
+    max-width:320px;
+  }
+
+}
+
+/* MÓVIL */
+@media(max-width:480px){
+
+  .about-image img{
+    max-width:260px;
+    border-radius:22px;
+  }
+
+}
 /* =========================
    CONTACT
 ========================= */
@@ -780,4 +811,133 @@ body{
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+/* Tablets */
+@media (max-width: 768px){
+
+    body{
+        padding:20px;
+        align-items:flex-start;
+    }
+
+    .ticket{
+        width:100%;
+        max-width:550px;
+
+        padding:28px;
+    }
+
+    h2{
+        font-size:1.7rem;
+    }
+
+    li{
+        font-size:1rem;
+
+        padding:14px 16px;
+    }
+
+    button{
+        font-size:1rem;
+
+        padding:15px;
+    }
+
+    .total .monto-final{
+        font-size:2rem;
+    }
+}
+
+
+/* Celulares */
+@media (max-width: 480px){
+
+    body{
+        padding:15px;
+    }
+
+    .ticket{
+        width:100%;
+
+        padding:22px;
+
+        border-radius:20px;
+    }
+
+    h2{
+        font-size:1.5rem;
+
+        margin-bottom:18px;
+
+        padding-bottom:14px;
+    }
+
+    ul{
+        gap:10px;
+    }
+
+    li{
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:8px;
+
+        font-size:.95rem;
+
+        padding:14px;
+    }
+
+    li:hover{
+        transform:none; /* evita movimientos incómodos */
+    }
+
+    button{
+        padding:14px;
+
+        font-size:1rem;
+
+        border-radius:14px;
+    }
+
+    .total{
+        text-align:center;
+
+        padding:16px;
+    }
+
+    .total .detalle{
+        font-size:.95rem;
+    }
+
+    .total .monto-final{
+        font-size:1.8rem;
+    }
+}
+
+
+/* Pantallas muy pequeñas */
+@media (max-width: 320px){
+
+    .ticket{
+        padding:18px;
+    }
+
+    h2{
+        font-size:1.3rem;
+    }
+
+    .total .monto-final{
+        font-size:1.5rem;
+    }
+
+    button{
+        font-size:.95rem;
+    }
+
 }
